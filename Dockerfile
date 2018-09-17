@@ -109,6 +109,7 @@ RUN curl -fsSLo /tmp/asterisk.tar.gz http://downloads.asterisk.org/pub/telephony
   menuselect/menuselect ${ASTERISK_OPTIONS} menuselect.makeopts && \
   make && \
   make install && \
+  make config && \
   yum -y remove autoconf make gcc gcc-c++ flex bison patch subversion ncurses-devel libuuid-devel libxml2-devel \
     sqlite-devel libedit-devel speex-devel speexdsp-devel libogg-devel libvorbis-devel alsa-lib-devel portaudio-devel \
     libcurl-devel openldap-devel postgresql-devel unixODBC-devel neon-devel gmime-devel lua-devel uriparser-devel \
