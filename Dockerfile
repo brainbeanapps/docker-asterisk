@@ -91,16 +91,16 @@ RUN curl -fsSLo /tmp/asterisk.tar.gz http://downloads.asterisk.org/pub/telephony
   yum -y install ncurses-libs libuuid libxml2 sqlite libedit speex speexdsp libogg libvorbis alsa-lib portaudio \
     libcurl openldap postgresql-libs unixODBC neon gmime lua uriparser libxslt mariadb-libs bluez-libs radcli freetds \
     jack-audio-connection-kit net-snmp-libs corosynclib newt popt libical spandsp uw-imap binutils \
-    gsm doxygen graphviz zlib hoard codec2 fftw-libs libsndfile unbound-libs libavcodec opus mISDN \
+    gsm doxygen graphviz zlib hoard codec2 fftw-libs libsndfile unbound-libs opus mISDN \
     ${ASTERISK_DEPENDENCIES} \
     && \
   yum -y install autoconf make gcc gcc-c++ flex bison patch subversion ncurses-devel libuuid-devel libxml2-devel \
-    sqlite-devel libedit-devel speex-devel speexdsp-devel libogg-devel libvorbis-devel alsa-lib-devel portaudio-devel \
+    sqlite-devel libedit-devel speex-devel libogg-devel libvorbis-devel alsa-lib-devel portaudio-devel \
     libcurl-devel openldap-devel postgresql-devel unixODBC-devel neon-devel gmime-devel lua-devel uriparser-devel \
     libxslt-devel openssl-devel mariadb-devel bluez-libs-devel radcli-devel freetds-devel \
     jack-audio-connection-kit-devel net-snmp-devel corosynclib-devel newt-devel popt-devel libical-devel spandsp-devel \
     uw-imap-devel binutils-devel gsm-devel zlib-devel codec2-devel fftw-devel libsndfile-devel \
-    unbound-devel libavcodec-devel opus-devel mISDN-devel \
+    unbound-devel opus-devel mISDN-devel \
     ${ASTERISK_BUILD_DEPENDENCIES} \
     && \
   ./configure ${ASTERISK_MODULES} && \
@@ -111,12 +111,12 @@ RUN curl -fsSLo /tmp/asterisk.tar.gz http://downloads.asterisk.org/pub/telephony
   make install && \
   make config && \
   yum -y remove autoconf make gcc gcc-c++ flex bison patch subversion ncurses-devel libuuid-devel libxml2-devel \
-    sqlite-devel libedit-devel speex-devel speexdsp-devel libogg-devel libvorbis-devel alsa-lib-devel portaudio-devel \
+    sqlite-devel libedit-devel speex-devel libogg-devel libvorbis-devel alsa-lib-devel portaudio-devel \
     libcurl-devel openldap-devel postgresql-devel unixODBC-devel neon-devel gmime-devel lua-devel uriparser-devel \
     libxslt-devel openssl-devel mariadb-devel bluez-libs-devel radcli-devel freetds-devel \
     jack-audio-connection-kit-devel net-snmp-devel corosynclib-devel newt-devel popt-devel libical-devel spandsp-devel \
     uw-imap-devel binutils-devel gsm-devel zlib-devel codec2-devel fftw-devel libsndfile-devel \
-    unbound-devel libavcodec-devel opus-devel mISDN-devel \
+    unbound-devel opus-devel mISDN-devel \
     ${ASTERISK_BUILD_DEPENDENCIES} \
     && \
   yum clean all && \
