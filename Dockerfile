@@ -22,14 +22,15 @@ WORKDIR /tmp/libjansson
 RUN curl -fsSLo /tmp/libjansson.tar.gz http://www.digip.org/jansson/releases/jansson-${LIBJANSSON_VERSION}.tar.gz && \
   tar -xzf /tmp/libjansson.tar.gz -C . --strip-components=1 && \
   yum -y install autoconf make gcc gcc-c++ && \
-  ./configure && \
+  ./configure --prefix=/usr && \
   make && \
   make check && \
   make install && \
   yum -y remove autoconf make gcc gcc-c++ && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  rm -rf /tmp/libjansson
+  rm -rf /tmp/libjansson && \
+  rm -f /tmp/libjansson.tar.gz
 
 # Compile & install DAHDI
 WORKDIR /tmp/dahdi
@@ -42,7 +43,8 @@ RUN curl -fsSLo /tmp/dahdi.tar.gz https://downloads.asterisk.org/pub/telephony/d
   yum -y remove autoconf make gcc gcc-c++ kernel-devel && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  rm -rf /tmp/dahdi
+  rm -rf /tmp/dahdi && \
+  rm -f /tmp/dahdi.tar.gz
 
 # Compile & install libpri
 WORKDIR /tmp/libpri
@@ -54,7 +56,8 @@ RUN curl -fsSLo /tmp/libpri.tar.gz https://downloads.asterisk.org/pub/telephony/
   yum -y remove autoconf make gcc gcc-c++ && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  rm -rf /tmp/libpri
+  rm -rf /tmp/libpri && \
+  rm -f /tmp/libpri.tar.gz
 
 # Compile & install libiksemel (for Google Voice)
 WORKDIR /tmp/libiksemel
@@ -63,26 +66,28 @@ RUN curl -fsSLo /tmp/libiksemel.zip https://github.com/meduketto/iksemel/archive
   mv /tmp/iksemel-master/* . && \
   yum -y install autoconf make gcc gcc-c++ libtool python-devel texinfo && \
   ./autogen.sh && \
-  ./configure && \
+  ./configure --prefix=/usr && \
   make && \
   make install && \
   yum -y remove autoconf make gcc gcc-c++ libtool python-devel texinfo && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  rm -rf /tmp/libiksemel
+  rm -rf /tmp/libiksemel && \
+  rm -f /tmp/libiksemel.zip
 
 # Compile & install libsrtp2
 WORKDIR /tmp/libsrtp2
 RUN curl -fsSLo /tmp/libsrtp2.tar.gz http://github.com/cisco/libsrtp/archive/v2.tar.gz && \
   tar -xzf /tmp/libsrtp2.tar.gz -C . --strip-components=1 && \
   yum -y install autoconf make gcc gcc-c++ openssl-devel && \
-  ./configure --enable-openssl && \
+  ./configure --prefix=/usr --enable-openssl && \
   make shared_library && \
   make install && \
   yum -y remove autoconf make gcc gcc-c++ openssl-devel && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  rm -rf /tmp/libsrtp2
+  rm -rf /tmp/libsrtp2 && \
+  rm -f /tmp/libsrtp2.tar.gz
 
 # Compile & install Asterisk
 WORKDIR /tmp/asterisk
@@ -121,6 +126,7 @@ RUN curl -fsSLo /tmp/asterisk.tar.gz http://downloads.asterisk.org/pub/telephony
     && \
   yum clean all && \
   rm -rf /var/cache/yum && \
-  rm -rf /tmp/asterisk
+  rm -rf /tmp/asterisk && \
+  rm -f /tmp/asterisk.tar.gz
 
 ENTRYPOINT [ "/usr/sbin/asterisk", "-cvvvvv" ]
