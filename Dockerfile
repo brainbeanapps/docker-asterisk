@@ -8,7 +8,7 @@ ARG ASTERISK_VERSION=13.23.0
 ARG ASTERISK_DEPENDENCIES=""
 ARG ASTERISK_BUILD_DEPENDENCIES=""
 ARG ASTERISK_MODULES="--with-pjproject-bundled"
-ARG ASTERISK_OPTIONS="--enable format_mp3"
+ARG ASTERISK_OPTIONS="--enable format_mp3 --enable app_confbridge"
 
 # Install updates, enable EPEL, install dependencies
 RUN yum -y update && \
